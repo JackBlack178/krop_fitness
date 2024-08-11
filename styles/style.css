@@ -45,7 +45,6 @@ body {
 .title-medium {
   font-size: clamp(15px, 2.08vw, 40px);
   line-height: 1.3;
-  color: var(--color-light);
 }
 
 .backdrop-title {
@@ -79,6 +78,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   text-transform: uppercase;
+  color: var(--color-light);
 }
 
 a,
@@ -289,9 +289,43 @@ a:hover {
   margin-bottom: 40px;
 }
 
+.training-types {
+  position: relative;
+  background-color: var(--color-dark);
+  max-width: 1920px;
+  margin-inline: auto;
+  padding-block: 70px 120px;
+}
+.training-types-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 60px;
+}
+.training-types-item {
+  --training-types-bgsize:80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 32px;
+  background: urL("/icons/fitnessTypes/arrow-left-down.svg") no-repeat 100% 0;
+  background-size: var(--training-types-bgsize);
+  padding-top: var(--training-types-bgsize);
+}
+.training-types-item-title {
+  font-size: 16px;
+}
+.training-types-image {
+  position: relative;
+}
+
 @media (max-width: 1919px) {
   .motivation-card-image {
     margin-block: -20px;
+  }
+}
+@media (max-width: 1280px) {
+  .training-types-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 1024px) {
@@ -356,6 +390,18 @@ a:hover {
   }
   .motivation-card-image {
     max-width: 60%;
+  }
+  .training-types-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .training-types-item {
+    --training-types-bgsize:50px;
+    row-gap: 10px;
+  }
+  .training-types-image {
+    max-width: 120px;
+    height: auto;
   }
 }
 
