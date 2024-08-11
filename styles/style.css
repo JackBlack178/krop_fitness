@@ -108,8 +108,10 @@ svg * {
 a {
   color: var(--color-light);
 }
-a:hover {
-  color: var(--color-light-gray);
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-light-gray);
+  }
 }
 
 .button {
@@ -126,8 +128,15 @@ a:hover {
   border: var(--border);
   border-radius: var(--border-radius);
 }
-.button:hover {
-  background-color: var(--color-light-gray);
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--color-light-gray);
+  }
+}
+@media (hover: none) {
+  .button:active {
+    background-color: var(--color-light-gray);
+  }
 }
 .button.transparent {
   position: relative;
@@ -137,9 +146,17 @@ a:hover {
   border: var(--border);
   color: var(--color-light);
 }
-.button.transparent:hover {
-  color: var(--color-dark);
-  background-color: var(--color-light-gray);
+@media (hover: hover) {
+  .button.transparent:hover {
+    color: var(--color-dark);
+    background-color: var(--color-light-gray);
+  }
+}
+@media (hover: none) {
+  .button.transparent:active {
+    color: var(--color-dark);
+    background-color: var(--color-light-gray);
+  }
 }
 .button.transparent::after {
   content: "";
@@ -168,8 +185,10 @@ a:hover {
   color: var(--color-dark);
   background-color: var(--color-light-gray);
 }
-.input:hover {
-  border-color: var(--color-light);
+@media (hover: hover) {
+  .input:hover {
+    border-color: var(--color-light);
+  }
 }
 .input::placeholder {
   color: var(--color-light-gray);
@@ -228,10 +247,12 @@ a:hover {
   border: var(--border);
   border-radius: 50%;
 }
-.header-burger-button:hover {
-  color: var(--color-light-gray);
-  border-color: currentColor;
-  background-color: var(--color-dark);
+@media (hover: hover) {
+  .header-burger-button:hover {
+    color: var(--color-light-gray);
+    border-color: currentColor;
+    background-color: var(--color-dark);
+  }
 }
 .header-burger-button-line {
   width: 6px;
@@ -298,8 +319,10 @@ a:hover {
 .banner-pagination-button.is-current::after {
   background-color: var(--color-light);
 }
-.banner-pagination-button:not(.is-current):hover::after {
-  background-color: var(--color-light-gray);
+@media (hover: hover) {
+  .banner-pagination-button:not(.is-current):hover::after {
+    background-color: var(--color-light-gray);
+  }
 }
 
 .motivation-item:nth-child(even) {
@@ -390,13 +413,15 @@ a:hover {
   font-size: 14px;
   text-transform: uppercase;
 }
-.join-us-video-play-button:hover {
-  border-color: var(--color-light-gray);
-  color: var(--color-dark);
-  background-color: var(--color-light-gray);
-}
-.join-us-video-play-button:hover::after {
-  filter: invert(100%);
+@media (hover: hover) {
+  .join-us-video-play-button:hover {
+    border-color: var(--color-light-gray);
+    color: var(--color-dark);
+    background-color: var(--color-light-gray);
+  }
+  .join-us-video-play-button:hover::after {
+    filter: invert(100%);
+  }
 }
 .join-us-video-play-button::after {
   content: "";
