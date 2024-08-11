@@ -551,5 +551,9 @@ a:hover {
     row-gap: 20px;
   }
 }
+.pause-button-hover {
+  display: inline-block;
+  transition-duration: var(--transition-duration);
+}
 
 /*# sourceMappingURL=style.css.map */
