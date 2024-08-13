@@ -10,21 +10,22 @@ imgElement.src = 'icons/pause.svg';
 imgElement.alt = 'Pause Icon';
 imgElement.style.width = '24px';
 imgElement.style.height = '24px';
-// pauseButton.appendChild(imgElement); // Добавляем иконку в кнопку
+// pauseButton.appendChild(imgElement);
 pauseButton.innerHTML = 'Pause'
 
-button.addEventListener('click', playPauseMedia);
-pauseButton.addEventListener('click', playPauseMedia);
+button.addEventListener('click', ()=>video.play());
+pauseButton.addEventListener('click', ()=>video.pause());
 
 let pauseButtonEntered = false;
 let hidePauseButtonTimeout;
 
-// Функция для отображения кнопки паузы
+
 function showPauseButton() {
     pauseButton.style.visibility = 'visible';
 }
 
-// Функция для скрытия кнопки паузы с задержкой
+const delay = (cb, ms) => setTimeout(cb, ms)
+
 function hidePauseButton() {
     hidePauseButtonTimeout = setTimeout(() => {
         if (!pauseButtonEntered) {
@@ -33,48 +34,57 @@ function hidePauseButton() {
     }, 200);
 }
 
-// Обработчик для отслеживания, когда указатель мыши находится на кнопке
+
+
 pauseButton.addEventListener('mouseenter', () => {
     pauseButtonEntered = true;
     pauseButton.style.visibility = 'visible';
-    clearTimeout(hidePauseButtonTimeout); // Очистить таймер, чтобы кнопка не скрылась
+    clearTimeout(hidePauseButtonTimeout)
 });
 
 pauseButton.addEventListener('mouseleave', () => {
     pauseButtonEntered = false;
-    hidePauseButton(); // Скрыть кнопку с задержкой
+    hidePauseButton();
 });
+
+
+
+video.addEventListener('pause', () => {
+    playPauseMedia()
+})
+
+video.addEventListener('play', () => {
+    playPauseMedia()
+})
 
 video.addEventListener('mouseenter', () => {
     if (!video.paused) {
-        showPauseButton(); // Показать кнопку, если видео не на паузе
+        showPauseButton();
     }
 });
 
 video.addEventListener('mouseleave', () => {
     if (!pauseButtonEntered) {
-        hidePauseButton(); // Скрыть кнопку с задержкой
+        hidePauseButton();
     }
 });
 
 video.addEventListener('click', () => {
     if (!video.paused) {
-        showPauseButton(); // Показать кнопку при клике на видео
+        showPauseButton();
     }
 });
 
 function playPauseMedia() {
-    if (video.paused) {
-        video.play();
+    if (!video.paused && !video.ended) {
         button.style.visibility = 'hidden';
-        pauseButton.style.visibility = 'hidden';
+        delay(()=>pauseButton.style.visibility = 'visible',300)
     } else {
-        video.pause();
-        button.style.visibility = 'visible';
         pauseButton.style.visibility = 'hidden';
+        delay(()=>button.style.visibility = 'visible', 300)
     }
 }
 
-// Вставляем кнопку паузы прямо после кнопки воспроизведения
+
 button.insertAdjacentElement('afterend', pauseButton);
 pauseButton.style.visibility = 'hidden';
