@@ -3,7 +3,7 @@ const video = document.querySelector('video');
 
 const pauseButton = document.createElement('button');
 pauseButton.classList = 'join-us-video-play-button pause-button-hover';
-pauseButton.style.visibility = 'hidden'; // Скрываем кнопку по умолчанию
+pauseButton.style.display = 'none';
 
 const imgElement = document.createElement('img');
 imgElement.src = 'icons/pause.svg';
@@ -21,7 +21,7 @@ let hidePauseButtonTimeout;
 
 
 function showPauseButton() {
-    pauseButton.style.visibility = 'visible';
+    pauseButton.style.display = 'block';
 }
 
 const delay = (cb, ms) => setTimeout(cb, ms)
@@ -29,7 +29,7 @@ const delay = (cb, ms) => setTimeout(cb, ms)
 function hidePauseButton() {
     hidePauseButtonTimeout = setTimeout(() => {
         if (!pauseButtonEntered) {
-            pauseButton.style.visibility = 'hidden';
+            pauseButton.style.display = 'none';
         }
     }, 200);
 }
@@ -38,7 +38,7 @@ function hidePauseButton() {
 
 pauseButton.addEventListener('mouseenter', () => {
     pauseButtonEntered = true;
-    pauseButton.style.visibility = 'visible';
+    pauseButton.style.display = 'block';
     clearTimeout(hidePauseButtonTimeout)
 });
 
@@ -77,14 +77,14 @@ video.addEventListener('click', () => {
 
 function playPauseMedia() {
     if (!video.paused && !video.ended) {
-        button.style.visibility = 'hidden';
-        delay(()=>pauseButton.style.visibility = 'visible',300)
+        button.style.display = 'none';
+        delay(()=>pauseButton.style.display = 'block',100)
     } else {
-        pauseButton.style.visibility = 'hidden';
-        delay(()=>button.style.visibility = 'visible', 300)
+        pauseButton.style.display = 'none';
+        delay(()=>button.style.display = 'block', 100)
     }
 }
 
 
 button.insertAdjacentElement('afterend', pauseButton);
-pauseButton.style.visibility = 'hidden';
+pauseButton.style.display = 'none';
